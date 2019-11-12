@@ -13,6 +13,7 @@ typedef struct dato{
     double resultado;
     double semilla;
     double calcular() {return coeficiente * semilla;}
+    bool operator==(double val) {return fila == val;}
 } dato;
 
 int lecturaDatos(std::vector <dato> &ORIGEN);
