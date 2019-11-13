@@ -14,10 +14,10 @@ void imprimirdatos(const std::vector<dato> &);
 int main(int argc, char * argv[]) {
     std::vector <dato> DATOS;
     //lecturaDatos(DATOS);
-    dato d1 = {1, 0, 0, 1.0, 6.5, 1.0, };
-    dato d2 = {2, 0, 1, 0.5, 6.5, 1.0, };
-    dato d3 = {3, 1, 0, 0.71428571429, 1.85714285714, 1.0, };
-    dato d4 = {4, 1, 1, 1.0, 1.85714285714, 1.0, };
+    dato d1 = {1, 0, 0, 1.0, 5.5, 0.0, };
+    dato d2 = {2, 0, 1, 0.5, 5.5, 0.0, };
+    dato d3 = {3, 1, 0, 0.71428571429, 1.85714285714, 0.0, };
+    dato d4 = {4, 1, 1, 1.0, 1.85714285714, 0.0, };
     DATOS.push_back(d1);
     DATOS.push_back(d2);
     DATOS.push_back(d3);
@@ -33,19 +33,17 @@ int main(int argc, char * argv[]) {
     std::vector <double> RESULTADO_ANT;
     RESULTADO_ACT.reserve(cantidad_fila);
     RESULTADO_ANT.reserve(cantidad_fila);
-    int count = 0;
     do{
-        ++ count;
         RESULTADO_ACT.clear();
         RESULTADO_ANT.clear();
         calcular_fila(DATOS, RESULTADO_ANT);
         insertar_nueva_semilla(DATOS, RESULTADO_ANT);
         calcular_fila(DATOS, RESULTADO_ACT);
         insertar_nueva_semilla(DATOS,RESULTADO_ACT);
-    }while(!satisface(RESULTADO_ANT,RESULTADO_ACT) && count < 50);
-    for (const auto &item : RESULTADO_ACT) {
-        std::cout << item << " - ";
-    }
+        for (const auto &item : RESULTADO_ACT) {
+            std::cout << item << "\n";
+        }
+    }while(!satisface(RESULTADO_ANT,RESULTADO_ACT));
     return 0;
 }
 void imprimirdatos(const std::vector<dato> & dato){

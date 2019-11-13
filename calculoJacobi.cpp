@@ -4,47 +4,50 @@
 
 #include "calculoJacobi.h"
 void calcular_fila(std::vector<dato> &datos, std::vector<double> &b) {
-// Sumatoria de todos los resultados de Coef * Semilla, más B
-    std::stack<dato> pila_fila;
-    double resultado_fila;
-    double acum = 0.0;
-    for(const auto &elem : datos){
-        if(pila_fila.empty() || pila_fila.top().fila == elem.fila) {
-            pila_fila.push(elem);
-            std::cout << "Metimos: " << elem.fila << "de: " << elem.pos << "\n";
-        }
-        else{
-            resultado_fila = pila_fila.top().resultado;
-            while(!pila_fila.empty()){
-                acum += pila_fila.top().calcular();
-                pila_fila.pop();
+    std::stack<dato> pila_datos;
+    auto it = datos.begin();
+    while(it != datos.end()) {
+        if(it->pos == it-> fila) {
+            //std::cout << "Elemento de la diagonal\n";
+            it++;
+            if(it == datos.end()){
+                double acumulador = 0.0;
+                double resultado_fila = pila_datos.top().resultado;
+                while(!pila_datos.empty()){
+                    acumulador += pila_datos.top().calcular();
+                    pila_datos.pop();
+                    //std::cout << "Saco Elemento\n";
+                }
+                b.push_back(resultado_fila - acumulador);
+                //std::cout << "Escribo el resultado en el vector\n";
             }
-            resultado_fila -= acum;
-            std::cout << "Vaciamos pila" << "\n";
-            b.push_back(resultado_fila);
-            pila_fila.push(elem);
-            std::cout << "#Metimos: " << elem.fila << "de: " << elem.pos << "\n";
+        }
+        else if(pila_datos.empty() || pila_datos.top().fila == it->fila ){
+            //std::cout << "Meto Elemento\n";
+            pila_datos.push(*it);
+            it++;
+        }
+        else {
+            double acumulador = 0.0;
+            double resultado_fila = pila_datos.top().resultado;
+            while(!pila_datos.empty()){
+                acumulador += pila_datos.top().calcular();
+                pila_datos.pop();
+                //std::cout << "Saco Elemento\n";
+            }
+            b.push_back(resultado_fila - acumulador);
+            //std::cout << "Escribo el resultado en el vector\n";
         }
     }
-    acum = 0.0;
-    resultado_fila = pila_fila.top().resultado;
-    while(!pila_fila.empty()){
-        acum += pila_fila.top().calcular();
-        pila_fila.pop();
-    }
-    resultado_fila -= acum;
-    b.push_back(resultado_fila);
-    std::cout << "Vaciamos pila final!" << "\n";
+    //std::cout << b.size() << "\n";
 }
-
 bool compararDatos(const dato a, const dato b){
     return a.fila < b.fila;
 }
 
 void insertar_nueva_semilla(std::vector<dato> &datos, std::vector<double> &resultados){
     for (auto &item : datos) {
-        if(item.pos < resultados.size())
-            item.semilla = resultados.at(item.pos);
+        item.semilla = resultados[item.pos];
     }
 }
 
