@@ -3,5 +3,6 @@ project(comp_distribuida)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(comp_distribuida main.cpp lecturaDatos.cpp lecturaDatos.h calculoJacobi.cpp calculoJacobi.h)
+add_executable(comp_distribuida main.cpp persistencia.cpp persistencia.h calculoJacobi.cpp calculoJacobi.h)
+add_executable(limites limites.cpp)
 target_link_libraries(comp_distribuida sqlite3)

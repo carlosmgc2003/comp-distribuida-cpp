@@ -17,6 +17,7 @@ typedef struct dato{
 } dato;
 
 int lecturaDatos(std::vector <dato> &ORIGEN);
+int escrituraDatos(std::vector <dato> &ORIGEN);
 #define COMP_DISTRIBUIDA_LECTURADATOS_H
 
 #endif //COMP_DISTRIBUIDA_LECTURADATOS_H

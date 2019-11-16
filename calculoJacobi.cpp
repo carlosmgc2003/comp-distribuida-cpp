@@ -8,7 +8,6 @@ void calcular_fila(std::vector<dato> &datos, std::vector<double> &b) {
     auto it = datos.begin();
     while(it != datos.end()) {
         if(it->pos == it-> fila) {
-            //std::cout << "Elemento de la diagonal\n";
             it++;
             if(it == datos.end()){
                 double acumulador = 0.0;
@@ -16,14 +15,11 @@ void calcular_fila(std::vector<dato> &datos, std::vector<double> &b) {
                 while(!pila_datos.empty()){
                     acumulador += pila_datos.top().calcular();
                     pila_datos.pop();
-                    //std::cout << "Saco Elemento\n";
                 }
                 b.push_back(resultado_fila - acumulador);
-                //std::cout << "Escribo el resultado en el vector\n";
             }
         }
         else if(pila_datos.empty() || pila_datos.top().fila == it->fila ){
-            //std::cout << "Meto Elemento\n";
             pila_datos.push(*it);
             it++;
         }
@@ -33,13 +29,10 @@ void calcular_fila(std::vector<dato> &datos, std::vector<double> &b) {
             while(!pila_datos.empty()){
                 acumulador += pila_datos.top().calcular();
                 pila_datos.pop();
-                //std::cout << "Saco Elemento\n";
             }
             b.push_back(resultado_fila - acumulador);
-            //std::cout << "Escribo el resultado en el vector\n";
         }
     }
-    //std::cout << b.size() << "\n";
 }
 bool compararDatos(const dato a, const dato b){
     return a.fila < b.fila;
@@ -53,7 +46,7 @@ void insertar_nueva_semilla(std::vector<dato> &datos, std::vector<double> &resul
 
 bool satisface(std::vector<double> & anterior, std::vector<double> & actual) {
 //Devuelve true si la norma euclidea entre el vector solucion n-1 y el n es menor a error
-    double error = std::pow(10,-5);
+    double error = std::pow(10,-14);
     double norma = 0.0;
     auto ant = anterior.begin();
     auto act = actual.begin();
@@ -61,6 +54,7 @@ bool satisface(std::vector<double> & anterior, std::vector<double> & actual) {
         norma += std::pow(*ant - *act,2);
         act ++;
     }
-    std::cout << std::sqrt(norma) << " <= " << error << "\n";
-    return std::sqrt(norma) <= error;
+    double raiz_norma = std::sqrt(norma);
+    std::cout << raiz_norma << " <= " << error << "\n";
+    return raiz_norma <= error;
 }

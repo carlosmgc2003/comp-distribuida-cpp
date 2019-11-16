@@ -4,7 +4,7 @@
 
 #ifndef COMP_DISTRIBUIDA_CALCULOJACOBI_H
 #define COMP_DISTRIBUIDA_CALCULOJACOBI_H
-#include "lecturaDatos.h"
+#include "persistencia.h"
 #include <stack>
 #include <iostream>
 #include <cmath>
