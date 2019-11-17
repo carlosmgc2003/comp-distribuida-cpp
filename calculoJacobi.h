@@ -4,15 +4,19 @@
 
 #ifndef COMP_DISTRIBUIDA_CALCULOJACOBI_H
 #define COMP_DISTRIBUIDA_CALCULOJACOBI_H
+
 #include "persistencia.h"
 #include <stack>
 #include <iostream>
 #include <cmath>
 
 
+void calcular_fila(std::vector<Dato> &, std::vector<Solucion> &);
 
-void calcular_fila(std::vector<dato> &, std::vector<double> &);
-void insertar_nueva_semilla(std::vector<dato> &, std::vector<double> &);
-bool compararDatos(dato, dato);
-bool satisface(std::vector<double> &, std::vector<double> &);
+void insertar_nueva_semilla(std::vector<Dato> &, std::vector<Solucion> &);
+
+bool compararDatos(Dato, Dato);
+
+bool satisface(std::vector<Solucion> &, std::vector<Solucion> &);
+
 #endif //COMP_DISTRIBUIDA_CALCULOJACOBI_H
