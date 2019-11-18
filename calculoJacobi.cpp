@@ -10,18 +10,6 @@ void calcular_fila(std::vector<Dato> &datos, std::vector<Solucion> &b) {
     while (it != datos.end()) {
         if (it->pos == it->fila) {
             it++;
-            if (it == datos.end()) {
-                Solucion nueva;
-                double acumulador = 0.0;
-                double resultado_fila = pila_datos.top().resultado;
-                nueva.nro_variable = pila_datos.top().fila;
-                while (!pila_datos.empty()) {
-                    acumulador += pila_datos.top().calcular();
-                    pila_datos.pop();
-                }
-                nueva.resultado = resultado_fila - acumulador;
-                b.push_back(nueva);
-            }
         } else if (pila_datos.empty() || pila_datos.top().fila == it->fila) {
             pila_datos.push(*it);
             it++;
@@ -37,6 +25,18 @@ void calcular_fila(std::vector<Dato> &datos, std::vector<Solucion> &b) {
             nueva.resultado = resultado_fila - acumulador;
             b.push_back(nueva);
         }
+    }
+    if (it == datos.end()) {
+        Solucion nueva;
+        double acumulador = 0.0;
+        double resultado_fila = pila_datos.top().resultado;
+        nueva.nro_variable = pila_datos.top().fila;
+        while (!pila_datos.empty()) {
+            acumulador += pila_datos.top().calcular();
+            pila_datos.pop();
+        }
+        nueva.resultado = resultado_fila - acumulador;
+        b.push_back(nueva);
     }
 }
 
