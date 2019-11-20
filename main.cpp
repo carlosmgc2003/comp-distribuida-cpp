@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
         calcular_fila(DATOS, RESULTADO_ANT);
         insertar_nueva_semilla(DATOS, RESULTADO_ANT);
         calcular_fila(DATOS, RESULTADO_ACT);
-        insertar_nueva_semilla(DATOS, RESULTADO_ACT);
+        //insertar_nueva_semilla(DATOS, RESULTADO_ACT);
     } while (!satisface(RESULTADO_ANT, RESULTADO_ACT));
     std::ofstream archivo;
     archivo.open("resultado.txt");
