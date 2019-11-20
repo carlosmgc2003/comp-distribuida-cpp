@@ -26,8 +26,8 @@ int lecturaDatos(std::vector<Dato> &ORIGEN) {
         nuevo.fila = sqlite3_column_int(cursor, 1);
         nuevo.pos = sqlite3_column_int(cursor, 2);
         nuevo.coeficiente = sqlite3_column_double(cursor, 3);
-        nuevo.semilla = 0.0;
         nuevo.resultado = sqlite3_column_double(cursor, 4);
+        nuevo.semilla = sqlite3_column_double(cursor, 4);
         ORIGEN.push_back(nuevo);
     }
     sqlite3_finalize(cursor);

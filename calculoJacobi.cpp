@@ -61,6 +61,5 @@ bool satisface(std::vector<Solucion> &anterior, std::vector<Solucion> &actual) {
         act++;
     }
     double raiz_norma = std::sqrt(norma);
-    std::cout << raiz_norma << " <= " << error << "\n";
     return raiz_norma <= error;
 }
