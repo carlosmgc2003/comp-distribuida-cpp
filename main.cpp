@@ -4,8 +4,7 @@
 #include "persistencia.h"
 
 
-
-int main(int argc, char *argv[]) {
+int main() {
     std::vector<Dato> DATOS;
     lecturaDatos(DATOS);
     //Averiguamos primer y ultima fila
@@ -17,7 +16,6 @@ int main(int argc, char *argv[]) {
     std::vector<Solucion> RESULTADO_ANT;
     RESULTADO_ACT.reserve(cantidad_fila);
     RESULTADO_ANT.reserve(cantidad_fila);
-    int count = 0;
     do {
         RESULTADO_ACT.clear();
         RESULTADO_ANT.clear();

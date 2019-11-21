@@ -46,13 +46,18 @@ bool compararDatos(const Dato a, const Dato b) {
 
 void insertar_nueva_semilla(std::vector<Dato> &datos, std::vector<Solucion> &resultados) {
     for (auto &item : datos) {
-        item.semilla = resultados[item.pos].resultado;
+        try {
+            item.semilla = resultados.at(item.pos).resultado;
+        }
+        catch (std::out_of_range) {
+            continue;
+        }
     }
 }
 
 bool satisface(std::vector<Solucion> &anterior, std::vector<Solucion> &actual) {
 //Devuelve true si la norma euclidea entre el vector solucion n-1 y el n es menor a error
-    double error = std::pow(10, -14);
+    double error = std::pow(10, -5);
     double norma = 0.0;
     auto ant = anterior.begin();
     auto act = actual.begin();
